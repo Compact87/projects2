@@ -4,5 +4,6 @@
 		<class>tech01.Item</class>
 		<class>tech01.Book</class>
 		<class>tech01.Comment</class>
+		<class>tech01.Movie</class>
 	</persistence-unit>
 </persistence>

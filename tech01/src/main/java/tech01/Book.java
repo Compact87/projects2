@@ -28,7 +28,12 @@ public class Book extends Item  {
 	/*
 	 * GETTERS/SETTERS
 	 */
-
+   public void addComment(Comment comment) {
+	   this.comments.add(comment);
+   }
+ 
+ 
+ 
 	public String getIsbn() {
 	return isbn;
 }

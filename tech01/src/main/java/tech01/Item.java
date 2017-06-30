@@ -22,7 +22,9 @@ public class Item {
 	 */
 	
 	
-	@Id@GeneratedValue
+	@Id
+	@GeneratedValue
+	@Column(name="ITEM_ID")
 	protected Long id;
 	@NotNull@Size( min=4, max=50)
 	protected String title;

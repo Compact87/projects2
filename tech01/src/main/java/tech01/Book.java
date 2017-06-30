@@ -19,8 +19,9 @@ public class Book extends Item  {
  private String publisher;
  private int nbOfPage;
  private boolean illustrations;
- 
-	
+ @OneToMany
+ @JoinColumn(name="OWNER_ID", referencedColumnName="ITEM_ID")
+	private List<Comment> comments;
 	/*
 	 * GETTERS/SETTERS
 	 */

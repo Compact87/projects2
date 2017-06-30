@@ -3,5 +3,6 @@
 	<persistence-unit name="tech01">
 		<class>tech01.Item</class>
 		<class>tech01.Book</class>
+		<class>tech01.Comment</class>
 	</persistence-unit>
 </persistence>

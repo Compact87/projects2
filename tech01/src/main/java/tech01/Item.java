@@ -59,13 +59,19 @@ public class Item {
 		this.price = price;
 	}
 
-
+	public Long getId() {
+		return id;
+	}
 	
 	
 	/*
 	 * CONSTRUCTORS
 	 */
 	
+	
+
+
+
 	public Item(String title, Float price) {
 		super();
 		this.title = title;

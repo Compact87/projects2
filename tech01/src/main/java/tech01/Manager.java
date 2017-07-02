@@ -39,7 +39,7 @@ public class Manager {
 	    itemEJB.createBook(book);
 	    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Book created",
 	            "The book" + book.getTitle() + " has been created with id=" + book.getId()));
-	    return "newBook.xhtml";
+	    return "newItem.xhtml";
 	  }
 
 	  public void doFindBookById() {
@@ -53,7 +53,7 @@ public class Manager {
 		    itemEJB.createMovie(movie);
 		    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Movie created",
 		            "The movie" + movie.getTitle() + " has been created with id=" + movie.getId()));
-		    return "newMovie.xhtml";
+		    return "newItem.xhtml";
 		  }
 
 		  public void doFindMovieById() {

@@ -19,7 +19,7 @@ public class Manager {
 	
 	public String createItem(Item item) {
 		itemEJB.createItem(item);
-		return newItem.xhtml; 
+		return "newItem.xhtml"; 
 	}
 
 }

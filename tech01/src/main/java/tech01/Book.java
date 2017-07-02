@@ -19,6 +19,7 @@ public class Book extends Item  {
 @NotNull
 @Transient
  private String isbn;
+@Size(min=3,max=50)
  private String publisher;
  private int nbOfPage;
  private boolean illustrations;
@@ -99,10 +100,10 @@ public void setIllustrations(boolean illustrations) {
 
 
 
-public Book(String title, Float price, String isbn, String publisher,
+public Book(String title, Float price, String publisher,
 		int nbOfPage, boolean illustrations) {
 	super(title, price);
-	this.isbn = isbn;
+	
 	this.publisher = publisher;
 	this.nbOfPage = nbOfPage;
 	this.illustrations = illustrations;

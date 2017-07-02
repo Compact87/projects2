@@ -19,7 +19,7 @@ public class Movie extends Item {
 	private Float duration;
 	 @OneToMany
 	 @JoinColumn(name="OWNER_ID", referencedColumnName="ITEM_ID")
-		private List<Comment> comments;
+		private List<Comment> movieComments;
 	
 	/*
 	 * CONSTRUCTORS
@@ -37,7 +37,7 @@ public class Movie extends Item {
     * SETTERS/GETTERS
     */
 	 public void addComment(Comment comment) {
-		   this.comments.add(comment);
+		   this.movieComments.add(comment);
 	   }
 	
 	

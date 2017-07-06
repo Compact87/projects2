@@ -5,8 +5,9 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
       <ui:composition template="layout.xhtml">
+ 
 
-  <ui:define name="title">Create a new book</ui:define>
+  <ui:define name="title">Create a new ITEM</ui:define>
 
   <ui:define name="content">
 
@@ -14,31 +15,48 @@
 
       <h:panelGrid columns="2">
         <h:outputLabel value="Title : "/>
+        <h:inputText value="#{manager.book.title}"/>
+
+        <h:outputLabel value="Price : "/>
+        <h:inputText value="#{manager.book.price}"/>
+
+       <h:outputLabel value="Publisher : " />
+       <h:inputText value="#{manager.book.publisher}" />
+
+        <h:outputLabel value="Number of pages : "/>
+        <h:inputText value="#{manager.book.nbOfPage}"/>
+
+        <h:outputLabel value="Illustrations : "/>
+        <h:selectBooleanCheckbox value="#{manager.book.illustrations}"/>
+      </h:panelGrid>
+
+      <h:commandButton value="Create a book" action="#{manager.doCreateBook}">
+        <f:ajax execute="@form" render=":booklist :errors"/>
+      </h:commandButton>
+
+    </h:form>
+     <h:form id="itemForm">
+
+      <h:panelGrid columns="2">
+        <h:outputLabel value="Title : "/>
         <h:inputText value="#{bookController.book.title}"/>
 
         <h:outputLabel value="Price : "/>
         <h:inputText value="#{bookController.book.price}"/>
-
-        <h:outputLabel value="Description : "/>
-        <h:inputTextarea value="#{bookController.book.description}" cols="16" rows="3"/>
-
-        <h:outputLabel value="Number of pages : "/>
-        <h:inputText value="#{bookController.book.nbOfPage}"/>
-
-        <h:outputLabel value="Illustrations : "/>
-        <h:selectBooleanCheckbox value="#{bookController.book.illustrations}"/>
+      
       </h:panelGrid>
 
-      <h:commandButton value="Create a book" action="#{bookController.doCreateBook}">
-        <f:ajax execute="@form" render=":booklist :errors"/>
+      <h:commandButton value="Create an Item" action="#{manager.createItem()}">
+        <f:ajax execute="@form" render=":itemlist :errors"/>
       </h:commandButton>
 
     </h:form>
 
     <hr/>
+    <!-- Book AJAX -->
     <h1>List of books</h1>
 
-    <h:dataTable id="booklist" value="#{bookEJB.findAllBooks()}" var="bk" border="1">
+    <h:dataTable id="booklist" value="#{itemEJB.findAllBooks()}" var="bk" border="1">
 
       <h:column>
         <f:facet name="header">
@@ -54,6 +72,25 @@
         <h:outputText value="#{bk.price}"/>
       </h:column>
 
+    </h:dataTable>
+    
+    <!-- Item AJAX -->
+    <h1>List of items</h1>
+    <h:dataTable id="itemList" value="#{itemEJB.findAllItems()}" var="it" border="1">
+      <h:column>
+       <f:facet name="header">
+        <h:outputText value="Title" />
+       </f:facet>
+       <h:link outcome="viewItem.xhtml?id=#{it.id}" value="#{it.title}"/>
+      </h:column>
+      
+      <h:column>
+       <f:facet name="header">
+        <h:outputText value="Price" />
+       </f:facet>
+       <h:outputText value="#{it.price}" />
+      </h:column>
+    
     </h:dataTable>
   </ui:define>
 

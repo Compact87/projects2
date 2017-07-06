@@ -4,6 +4,23 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
-	<ui:composition template="">
-	</ui:composition>
+	<h:head>
+	 <title>
+	  <ui:insert name="title">Default title</ui:insert>
+	 </title>
+	</h:head>
+	
+	<h:body>
+	 <h:link value="Create a item" outcome="newItem.xhtml"/>
+	<h1>
+	 <ui:insert name="title">Default title</ui:insert>
+	</h1>
+	<hr/>
+	
+	<h:messages id="errors" infoStyle="color;green" warnStyle="color:orange" errorStyle="color;red"/>
+	
+	<ui:insert name="content">Default content</ui:insert>
+	<hr/>
+	<h:outputText value="JavaEE" style="font-style: italic"/>
+	</h:body>
 </html>

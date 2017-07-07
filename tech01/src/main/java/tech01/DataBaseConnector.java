@@ -1,5 +1,6 @@
 package tech01;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.sql.DataSourceDefinition;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
@@ -27,6 +28,7 @@ private ItemEJB itemEJB;
 /* 
  * Populate db on start
  */
+@PostConstruct
 public void populateStartData() {
 	itemEJB.createItem(new Item("Olovka", 23.99f));
 	itemEJB.createBook(new Book("Hobbit", 20.55f,"Vulkan", 200, false));

@@ -19,8 +19,8 @@ public class Manager {
 	/* 
 	 * NEW ITEM
 	 */
-	public String createItem(Item item) {
-		itemEJB.createItem(item);
+	public String createItem() {
+		itemEJB.createItem(this.item);
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Item created",
 	            "The item" + item.getTitle() + " has been created with id=" + item.getId()));
 		return "newItem.xhtml"; 

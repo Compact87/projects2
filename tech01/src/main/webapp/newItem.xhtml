@@ -30,7 +30,7 @@
         <h:selectBooleanCheckbox value="#{manager.book.illustrations}"/>
       </h:panelGrid>
 
-      <h:commandButton value="Create a book" action="#{manager.doCreateBook}">
+      <h:commandButton value="Create a book" action="#{manager.doCreateBook()}">
         <f:ajax execute="@form" render=":booklist :errors"/>
       </h:commandButton>
 
@@ -39,15 +39,15 @@
 
       <h:panelGrid columns="2">
         <h:outputLabel value="Title : "/>
-        <h:inputText value="#{bookController.book.title}"/>
+        <h:inputText value="#{manager.book.title}"/>
 
         <h:outputLabel value="Price : "/>
-        <h:inputText value="#{bookController.book.price}"/>
+        <h:inputText value="#{manager.book.price}"/>
       
       </h:panelGrid>
 
       <h:commandButton value="Create an Item" action="#{manager.createItem()}">
-        <f:ajax execute="@form" render=":itemlist :errors"/>
+        <f:ajax execute="@form" render=":itemList :errors"/>
       </h:commandButton>
 
     </h:form>

@@ -10,7 +10,6 @@ import javax.validation.constraints.Size;
  *
  */
 @Entity
-@EntityListeners(DataValidationListener.class)
 @DiscriminatorColumn(name="Discrimin", discriminatorType=DiscriminatorType.CHAR)
 @DiscriminatorValue("I")
 @NamedQuery(name="find all Items", query="SELECT i FROM Item i ORDER BY i.title DESC")

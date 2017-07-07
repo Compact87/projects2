@@ -1,5 +1,6 @@
 package tech01;
 
+import javax.annotation.sql.DataSourceDefinition;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -8,6 +9,14 @@ import javax.inject.Named;
 
 @Named
 @RequestScoped
+@DataSourceDefinition(name = "java:global/jdbc/tech01DS",
+className = "com.mysql.jdbc.jdbc2.optional.MysqlDataSource",
+serverName="localhost",
+portNumber=3306,
+user="root",
+password="",
+databaseName="tech01DB",
+properties={"connectionAttributes=;create=true"})
 public class Manager {
 
 	@Inject

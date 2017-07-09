@@ -26,9 +26,9 @@ public class Item {
 	@GeneratedValue
 	@Column(name="ITEM_ID")
 	protected Long id;
-	@NotNull@Size( min=4, max=50)
+	
 	protected String title;
-	@NotNull
+	
 	protected Float price;
 	
 	

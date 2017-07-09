@@ -16,10 +16,10 @@ import tech01.Item;
 @DiscriminatorValue("B")
 @EntityListeners(IsbnGenerator.class)
 public class Book extends Item  {
-@NotNull
+
 @Transient
  private String isbn;
-@Size(min=3,max=50)
+
  private String publisher;
  private int nbOfPage;
  private boolean illustrations;

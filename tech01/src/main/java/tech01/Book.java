@@ -88,6 +88,12 @@ public void setIllustrations(boolean illustrations) {
 	this.illustrations = illustrations;
 }
 
+
+@Override
+public Long getId() {
+	return id;
+}
+
  /* 
   * CONSTRUCTORS
   */

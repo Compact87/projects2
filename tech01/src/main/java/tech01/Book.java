@@ -89,10 +89,7 @@ public void setIllustrations(boolean illustrations) {
 }
 
 
-@Override
-public Long getId() {
-	return id;
-}
+
 
  /* 
   * CONSTRUCTORS

@@ -60,7 +60,7 @@ public class Item {
 	}
 
 	public Long getId() {
-		return id;
+		return this.id;
 	}
 	
 	

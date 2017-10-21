@@ -6,8 +6,8 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
-import service.Cars;
 import model.Car;
+import model.Cars;
 
 public class ClientTest {
 

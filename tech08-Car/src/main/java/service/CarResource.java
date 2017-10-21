@@ -29,6 +29,7 @@ import javax.ws.rs.core.UriInfo;
 import javax.persistence.*;
 
 import model.Car;
+import model.Cars;
 
 
 

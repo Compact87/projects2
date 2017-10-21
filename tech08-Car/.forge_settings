@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+<rootpath>services</rootpath>
+<rest>
+<applicationclass>
+<package>service</package>
+<name>ApplicationConfig</name>
+</applicationclass>
+</rest>
+</configuration>

@@ -8,6 +8,13 @@
   <packaging>war</packaging>
   <dependencyManagement>
     <dependencies>
+    <!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-jaxb-provider -->
+<dependency>
+    <groupId>org.jboss.resteasy</groupId>
+    <artifactId>resteasy-jaxb-provider</artifactId>
+    <version>2.3.0.GA</version>
+</dependency>
+    
       <dependency>
         <groupId>org.jboss.spec</groupId>
         <artifactId>jboss-javaee-6.0</artifactId>

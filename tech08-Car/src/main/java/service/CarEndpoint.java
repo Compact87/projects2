@@ -7,11 +7,17 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
+
+
+
+
+
 import model.Car;
 import service.dto.CarDTO;
 
@@ -73,9 +79,16 @@ public class CarEndpoint
 
    @GET
    @Produces("application/json")
+   @Path("/query")
    public List<CarDTO> listAll()
    {
-      final List<Car> searchResults = em.createQuery("SELECT DISTINCT c FROM Car c ORDER BY c.id", Car.class).getResultList();
+	
+	   Query query=em.createQuery("SELECT c FROM Car WHERE  c.id>2", Car.class);
+	   
+	
+	   
+	   
+      final List<Car> searchResults = query.getResultList();
       final List<CarDTO> results = new ArrayList<CarDTO>();
       for (Car searchResult : searchResults)
       {

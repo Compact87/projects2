@@ -23,6 +23,7 @@ public class ApplicationConfig extends Application {
 	    HashSet<Class<?>> c = new HashSet<>();
 	    c.add(CarResource.class);
 	    c.add(CarEndpoint.class);
+	    c.add(ShopResource.class);
 
 	   
 	    classes = Collections.unmodifiableSet(c);

@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlAttribute;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -24,7 +24,16 @@ public class Car implements Serializable {
 	private String model;
 	private String color;
 	private String year;
+	private boolean sold=false;
 	
+	public boolean isSold() {
+		return sold;
+	}
+
+	public void setSold(boolean sold) {
+		this.sold = sold;
+	}
+
 	public String getId() {
 		return id;
 	}

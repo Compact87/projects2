@@ -20,8 +20,8 @@ public class ClientTest {
 		System.out.println(writer.toString());
 		
 		Cars cars=new Cars();
-		cars.add(new Car("mercedes","220","red","2002"));
-		cars.add(new Car("ford","fiesta","white","2006"));
+		cars.addcars(new Car("mercedes","220","red","2002"));
+		cars.addcars(new Car("ford","fiesta","white","2006"));
 		
 	    context=JAXBContext.newInstance(Cars.class);
 		m=context.createMarshaller();

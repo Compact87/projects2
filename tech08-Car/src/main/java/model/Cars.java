@@ -45,6 +45,9 @@ public class Cars  {
 	public void setCars(List<Car> cars) {
 		this.cars = cars;
 	}
+	public int getCarsSize() {
+		return this.cars.size();
+	}
 	
 	public Cars() {
 		super();

@@ -28,11 +28,15 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.CacheControl;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.EntityTag;
 import javax.ws.rs.core.Link;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.PathSegment;
+import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
@@ -122,10 +126,21 @@ public class CarResource {
     @GET
     @Path("single/{id}")
     @Produces("application/json")
-    public Response getById(@PathParam("id") String id) {
+    public Response getById(@PathParam("id") String id,
+    		                @Context Request request) {
     	Car car=em.find(Car.class, id);
     	if (car==null) throw new WebApplicationException(Response.Status.NOT_FOUND);
-    	Response.ResponseBuilder builder = Response.ok(car);
+    	EntityTag etag=new EntityTag(Integer.toString(car.hashCode()));
+    	CacheControl cc=new CacheControl();
+    	cc.setMaxAge(1000);
+    	ResponseBuilder builder=request.evaluatePreconditions(etag);
+    	if(builder!=null) {
+    		builder.cacheControl(cc);
+    		return builder.build();
+    	}
+    	builder=Response.ok(car);
+    	builder.cacheControl(cc);
+    	builder.tag(etag);
     	if (!car.isSold()) addBuyHeader(uriInfo, builder);
     	return builder.build();
     }
@@ -147,8 +162,8 @@ public class CarResource {
      */
     @GET
     @Path("/ids")
-    @Produces("text/plain")
-    public String listAll(@QueryParam("start")  Integer start,
+    @Produces("application/xml")
+    public Response listAll(@QueryParam("start")  Integer start,
  		   						@QueryParam("size") Integer size,
  		   							@Context UriInfo uriInfo)
     {
@@ -164,32 +179,33 @@ public class CarResource {
            {
          query.setMaxResults(size);
       }
-      int next=start+size;
-      int previous=start-size;
+     
       
-      Cars cars=new Cars();
+      ArrayList<Link> links = new ArrayList<Link>();
+      Cars cars=new Cars();      
       cars.setCars(query.getResultList());
+      if (start + size < cars.getCarsSize());
+      {
+    	  int next=start+size;
       URI nextUri = builder.clone().build(next, size);
           Link nextLink = Link.fromUri(nextUri).rel("next").type("application/xml").build();
-         
+         links.add(nextLink);
 		
-      
+      }
       // previous link
       if (start > 0)
       {
-      
+    	  int previous=start-size;
       if (previous < 0) previous = 0;
       URI previousUri = builder.clone().build(previous, size);
       Link previousLink = Link.fromUri(previousUri)
       .rel("previous")
       .type("application/xml").build();
-    
+      links.add(previousLink);
       }
       
- 	Link link= Link.fromUriBuilder(builder).type("text/plain").build();
- 	
- 	   String string=link.toString();
-     return string;
+ 	cars.setLinks(links);
+ 	return Response.ok(cars).build();
     }
   /*
    * ADD LINK IN HEADER

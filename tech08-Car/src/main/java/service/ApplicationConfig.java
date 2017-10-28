@@ -24,7 +24,7 @@ public class ApplicationConfig extends Application {
 	    c.add(CarResource.class);
 	    c.add(CarEndpoint.class);
 	    c.add(ShopResource.class);
-	    c.add(Buy.class);
+	    
 
 	   
 	    classes = Collections.unmodifiableSet(c);

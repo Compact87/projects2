@@ -220,6 +220,20 @@ public class CarResource {
     /*
      * UPDATE
      */
-    
+    @PUT
+	 public Response buyCar(@PathParam("id") String id,
+			 				@Context Request request) {
+		 Car car=em.find(Car.class, id);
+		 EntityTag etag=new EntityTag(Integer.toString(car.hashCode()));
+		 CacheControl cc=new CacheControl();
+		 cc.setMaxAge(1000);
+		 ResponseBuilder builder=request.evaluatePreconditions(etag);
+		 if(builder!=null) {
+		 return builder.build();}
+		 car.setSold(true);
+		 em.merge(car);
+		 
+		 return Response.noContent().build();
+	 }
 }
 

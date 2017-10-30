@@ -221,6 +221,7 @@ public class CarResource {
      * UPDATE
      */
     @PUT
+    @Path("single/{id}/buy")
 	 public Response buyCar(@PathParam("id") String id,
 			 				@Context Request request) {
 		 Car car=em.find(Car.class, id);

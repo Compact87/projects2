@@ -15,29 +15,33 @@
         </div>
 
         <h:form id="reg">
-            <h2>Member Registration</h2>
+            <h2>Car Registration</h2>
             <p>Enforces annotation-based constraints defined on the
                 model class.</p>
             <h:panelGrid columns="3" columnClasses="titleCell">
-                <h:outputLabel for="name" value="Name:" />
-                <h:inputText id="name" value="#{newMember.name}" />
+                <h:outputLabel for="name" value="Manufacturer:" />
+                <h:inputText id="name" value="#{newCar.make}" />
                 <h:message for="name" errorClass="invalid" />
 
-                <h:outputLabel for="email" value="Email:" />
-                <h:inputText id="email" value="#{newMember.email}" />
-                <h:message for="email" errorClass="invalid" />
+                <h:outputLabel for="model" value="Model:" />
+                <h:inputText id="model" value="#{newCar.model}" />
+                <h:message for="model" errorClass="invalid" />
 
-                <h:outputLabel for="phoneNumber" value="Phone #:" />
-                <h:inputText id="phoneNumber"
-                    value="#{newMember.phoneNumber}" />
-                <h:message for="phoneNumber" errorClass="invalid" />
+                <h:outputLabel for="year" value="Year:" />
+                <h:inputText id="year"
+                    value="#{newCar.year}" />
+                <h:message for="year" errorClass="invalid" />
+                
+               <h:outputLabel for="color" value="Color:" />
+               <h:inputText id="color" value="#{newCar.color}" />
+               <h:message for="color" errorClass="invalid"/>
             </h:panelGrid>
 
             <p>
                 <h:panelGrid columns="2">
-                    <h:commandButton id="register"
-                        action="#{memberController.register}"
-                        value="Register" styleClass="register" />
+                    <h:commandButton id="create"
+                        action="#{controller.createCar}"
+                        value="Create" styleClass="create" />
                     <h:messages styleClass="messages"
                         errorClass="invalid" infoClass="valid"
                         warnClass="warning" globalOnly="true" />
@@ -70,7 +74,7 @@
             <h:column>
                 <f:facet name="header">REST URL</f:facet>
                 <a
-                    href="#{request.contextPath}/rest/members/#{_member.id}">/rest/members/#{_member.id}</a>
+                    href="#{request.contextPath}/services/cars/#{_member.id}">/rest/members/#{_member.id}</a>
             </h:column>
             <f:facet name="footer">
             REST URL for all members: <a

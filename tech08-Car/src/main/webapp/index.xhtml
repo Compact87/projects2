@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    template="/WEB-INF/templates/default.xhtml">
+    <ui:define name="content">
+        <h1>Welcome to JBoss!</h1>
+
+        <div>
+            <p>Java EE 7 
+                Application.</p>
+            <h3>Your application can run on:</h3>
+            <img src="resources/gfx/tramp lav.png" />
+        </div>
+
+        <h:form id="reg">
+            <h2>Car Registration</h2>
+            <p>Enforces annotation-based constraints defined on the
+                model class.</p>
+            <h:panelGrid columns="3" columnClasses="titleCell">
+                <h:outputLabel for="name" value="Manufacturer:" />
+                <h:inputText id="name" value="#{newCar.make}" />
+                <h:message for="name" errorClass="invalid" />
+
+                <h:outputLabel for="model" value="Model:" />
+                <h:inputText id="model" value="#{newCar.model}" />
+                <h:message for="model" errorClass="invalid" />
+
+                <h:outputLabel for="year" value="Year:" />
+                <h:inputText id="year"
+                    value="#{newCar.year}" />
+                <h:message for="year" errorClass="invalid" />
+                
+               <h:outputLabel for="color" value="Color:" />
+               <h:inputText id="color" value="#{newCar.color}" />
+               <h:message for="color" errorClass="invalid"/>
+            </h:panelGrid>
+
+            <p>
+                <h:panelGrid columns="2">
+                    <h:commandButton id="create"
+                        action="#{controller.createCar}"
+                        value="Create" styleClass="create" />
+                    <h:messages styleClass="messages"
+                        errorClass="invalid" infoClass="valid"
+                        warnClass="warning" globalOnly="true" />
+                </h:panelGrid>
+            </p>
+        </h:form>
+        <h2>Members</h2>
+        <h:panelGroup rendered="#{empty members}">
+            <em>No registered members.</em>
+        </h:panelGroup>
+        <h:dataTable var="_member" value="#{members}"
+            rendered="#{not empty members}"
+            styleClass="simpletablestyle">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                #{_member.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                #{_member.name}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Email</f:facet>
+                #{_member.email}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Phone #</f:facet>
+                #{_member.phoneNumber}
+            </h:column>
+            <h:column>
+                <f:facet name="header">REST URL</f:facet>
+                <a
+                    href="#{request.contextPath}/services/cars/#{_member.id}">/rest/members/#{_member.id}</a>
+            </h:column>
+            <f:facet name="footer">
+            REST URL for all members: <a
+                    href="#{request.contextPath}/rest/members">/rest/members</a>
+            </f:facet>
+        </h:dataTable>
+    </ui:define>
+</ui:composition>

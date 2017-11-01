@@ -66,7 +66,7 @@ public class TaskResource {
 		return Response.ok(tasks).build();
 	   }
 	@GET
-	@Path("/assigned")
+	@Path("/completed")
 	@Produces("application/json")
 	public Response gettCompleted() {
 		TypedQuery<Task> query=em.createQuery("SELECT t FROM Task t WHERE t.status.status=Live in Production ", Task.class);

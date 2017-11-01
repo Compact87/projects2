@@ -75,5 +75,8 @@ public class UserResource {
 	 user.setLastName(lastname);
 	 user.setPassword(password);
 	 user.setSecGroup(SecurityGroup.OPS);
+	 em.persist(user);
 	 return Response.ok().build();}
+ 
+ 
 }

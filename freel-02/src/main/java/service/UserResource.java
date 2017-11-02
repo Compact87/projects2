@@ -42,7 +42,7 @@ public class UserResource {
 	user= em.find(User.class, id);
 	return Response.ok(user).build();
  }
- @GET@Path("/")
+ @GET@Path("/all")
  @Produces("application/json")
  public Response getAllUsers() {
 	 TypedQuery<User> query=em.createQuery("SELECT t FROM User t", User.class);
@@ -69,11 +69,8 @@ public class UserResource {
 		 				@FormParam("firstname") String firstname,
 		 				@FormParam("lastname") String lastname,
 		 				@FormParam("email") String email) {
-	 user.setEmail(email);
-	 user.setUsername(username);
-	 user.setFirstName(firstname);
-	 user.setLastName(lastname);
-	 user.setPassword(password);
+	 user=new User(username, password,firstname,lastname,email);
+	
 	 user.setSecGroup(SecurityGroup.OPS);
 	 em.persist(user);
 	 return Response.ok().build();}

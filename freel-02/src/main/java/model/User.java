@@ -1,8 +1,14 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
@@ -16,19 +22,24 @@ public class User {
 	private String lastName;
 	private String email;
 	private SecurityGroup secGroup;
+	@OneToMany
+	@JoinTable(name = "jnd_ord_line",
+	joinColumns = @JoinColumn(name = "task_"),
+	inverseJoinColumns = @JoinColumn(name = "task_fk") )
+	private List<Task> tasks;
 	
 	public User () {}
 	
 	
 	public User(String username, String password, String firstName,
-			String lastName, String email, SecurityGroup secGroup) {
+			String lastName, String email) {
 		super();
 		Username = username;
 		Password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.secGroup = secGroup;
+		
 	}
 
 

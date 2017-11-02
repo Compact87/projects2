@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.PostUpdate;
@@ -19,19 +20,19 @@ public class Task {
 	@Column(name="PROCESS_ID")
 	private Long processId;
 	private String procesName;
-	@Column(name="CURRENT_OWNER")
+	@JoinColumn(name="CURRENT_OWNER")
     private User user;
 	@Column(name="DEV_USER")
-	private User devUser;
+	private Long devUserId;
 	@Column(name="OPS_USER")
-	private User opsUser;
+	private Long opsUserId;
 	@Column(name="INV_USER")
-	private User invUser;
+	private Long invUserId;
 	@Column(name="EXV_USER")
-	private User exvUser;
+	private Long exvUserId;
 	private Severity severity;
 	private Status status;
-	@Column(name="SEVERITY_LEVEL")
+	@JoinColumn(name="SEVERITY_LEVEL")
 	private Severity severityLevel;
     private boolean opsStep= false;
     private Long userId;
@@ -88,13 +89,13 @@ public Task() {}
  @PostUpdate
 	public void setStatus() {
 		switch(user.getSecGroup().toString()) {
-		case "DEVELOPER"         : status.setStatus("NEW");
+		case "DEVELOPER"         : status.setStatus("NEW");this.invUserId=user.getId();
 		break;
-		case "OPS"               : status.setStatus("PENDING_ON_OPS");
+		case "OPS"               : status.setStatus("PENDING_ON_OPS");this.opsUserId = user.getId();this.opsStep=true;
 		break;
-		case "INTERNAL_VALIDATOR": status.setStatus("PENDING_INTERNAL_VALIDATION");
+		case "INTERNAL_VALIDATOR": status.setStatus("PENDING_INTERNAL_VALIDATION");this.invUserId = user.getId();
 		break;
-		case "EXTERNAL_VALIDATOR": status.setStatus("PENDING_EXTERNAL_VALIDATION");
+		case "EXTERNAL_VALIDATOR": status.setStatus("PENDING_EXTERNAL_VALIDATION");this.exvUserId = user.getId();
 		break;
 		case "LEAD"              : status.setStatus("BUSINESS_VALIDATION_DONE");
 		break;
@@ -102,6 +103,8 @@ public Task() {}
 		break;
 		default                  : throw new IllegalArgumentException("invalid user group");
 		};
+		this.processId = this.task_id;
+		this.procesName = "proces name"+ this.processId.toString();
 	 }
 
 
@@ -111,10 +114,7 @@ public Long getProcessId() {
 }
 
 
-@PostConstruct
-public void setProcessId(Long processId) {
-	this.processId = this.task_id;
-}
+
 
 
 
@@ -123,75 +123,47 @@ public String getProcesName() {
 }
 
 
-@PostConstruct
-public void setProcesName() {
-	this.procesName = "proces name"+ this.processId.toString();
+
+
+
+
+public Long getDevUser() {
+	return devUserId;
 }
 
 
 
-public User getDevUser() {
-	return devUser;
-}
 
 
-@PostConstruct
-@PostUpdate
-public void setDevUser(User devUser) {
-	if(this.user.getSecGroup().toString()=="DEVELOPER") {
-	this.devUser = devUser;}
+
+public Long getOpsUser() {
+	return opsUserId;
 }
 
 
 
-public User getOpsUser() {
-	return opsUser;
-}
 
 
-@PostConstruct
-@PostUpdate
-public void setOpsUser(User opsUser) {
-	if(this.user.getSecGroup().toString()=="OPS") {
-		this.opsUser = opsUser;}
-	
+public Long getInvUser() {
+	return invUserId;
 }
 
 
 
-public User getInvUser() {
-	return invUser;
-}
-
-
-@PostConstruct
-@PostUpdate
-public void setInvUser(User invUser) {
-	if(this.user.getSecGroup().toString()=="INTERNAL_VALIDATOR") {
-		this.invUser = invUser;}
 	
 	
+
+
+
+
+public Long getExvUser() {
+	return exvUserId;
 }
 
 
 
-public User getExvUser() {
-	return exvUser;
-}
-
-
-@PostConstruct
-@PostUpdate
-public void setExvUser(User exvUser) {
-	if(this.user.getSecGroup().toString()=="EXTERNAL_VALIDATOR") {
-		this.exvUser = exvUser;}
 	
-}
-@PostUpdate
-public void setOpsStep() {
-	if(this.user.getSecGroup().toString()=="OPS") {this.opsStep=true;}
-	
-}
+
 public boolean getOpsStep() {return this.opsStep;}
 public Task(User user, Severity severity) {
 	super();

@@ -7,7 +7,7 @@ import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-import model.Task;
+
 @ApplicationPath("rest")
 public class ApplicationConfig extends Application{
 	 private final Set<Class<?>> classes;
@@ -15,6 +15,7 @@ public class ApplicationConfig extends Application{
 	 public ApplicationConfig() {
 		    HashSet<Class<?>> c = new HashSet<>();
 		    c.add(TaskResource.class);
+		    c.add(UserResource.class);
 		   
 		    
 

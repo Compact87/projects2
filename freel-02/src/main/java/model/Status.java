@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Status {
 	@Id@GeneratedValue
 	private Long Id;
-	@Enumerated
+	
 	String status;
 	String status_name;
 	public Long getId() {

@@ -1,85 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    template="/WEB-INF/templates/default.xhtml">
-    <ui:define name="content">
-        <h1>Welcome to JBoss!</h1>
+<!DOCTYPE html[
+  
+<!ENTITY copy "&#169;"> 
+ ]>
+ <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<html lang="en">
+  <head>
+    <meta charset="utf-8"></meta>
+    <title>Bootstrap, from Twitter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <meta name="description" content=""></meta>
+    <meta name="author" content=""></meta>
 
-        <div>
-            <p>Java EE 7 
-                Application.</p>
-            <h3>Your application can run on:</h3>
-            <img src="resources/gfx/tramp lav.png" />
+    <!-- Le styles -->
+    <link href="../resources/css/bootstrap.css" rel="stylesheet"></link>
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="../resources/css/bootstrap-responsive.css" rel="stylesheet"></link>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../resources/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png"></link>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png"></link>
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png"></link>
+                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png"></link>
+                                   <link rel="shortcut icon" href="../assets/ico/favicon.png"></link>
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Project name</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li class="nav-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="navbar-form pull-right">
+              <input class="span2" type="text" placeholder="Email"></input>
+              <input class="span2" type="password" placeholder="Password"></input>
+              <button type="submit" class="btn">Sign in</button>
+            </form>
+          </div><!--/.nav-collapse -->
         </div>
+      </div>
+    </div>
 
-        <h:form id="reg">
-            <h2>Car Registration</h2>
-            <p>Enforces annotation-based constraints defined on the
-                model class.</p>
-            <h:panelGrid columns="3" columnClasses="titleCell">
-                <h:outputLabel for="name" value="Manufacturer:" />
-                <h:inputText id="name" value="#{newCar.make}" />
-                <h:message for="name" errorClass="invalid" />
+    <div class="container">
 
-                <h:outputLabel for="model" value="Model:" />
-                <h:inputText id="model" value="#{newCar.model}" />
-                <h:message for="model" errorClass="invalid" />
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h1>Hello, world!</h1>
+        <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <p><a href="#" class="btn btn-primary btn-large">Learn more ;</a></p>
+      </div>
 
-                <h:outputLabel for="year" value="Year:" />
-                <h:inputText id="year"
-                    value="#{newCar.year}" />
-                <h:message for="year" errorClass="invalid" />
-                
-               <h:outputLabel for="color" value="Color:" />
-               <h:inputText id="color" value="#{newCar.color}" />
-               <h:message for="color" errorClass="invalid"/>
-            </h:panelGrid>
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="span4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn" href="#">View details ;</a></p>
+        </div>
+        <div class="span4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn" href="#">View details ;</a></p>
+       </div>
+        <div class="span4">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn" href="#">View details ;</a></p>
+        </div>
+      </div>
 
-            <p>
-                <h:panelGrid columns="2">
-                    <h:commandButton id="create"
-                        action="#{controller.createCar}"
-                        value="Create" styleClass="create" />
-                    <h:messages styleClass="messages"
-                        errorClass="invalid" infoClass="valid"
-                        warnClass="warning" globalOnly="true" />
-                </h:panelGrid>
-            </p>
-        </h:form>
-        <h2>Members</h2>
-        <h:panelGroup rendered="#{empty members}">
-            <em>No registered members.</em>
-        </h:panelGroup>
-        <h:dataTable var="_member" value="#{members}"
-            rendered="#{not empty members}"
-            styleClass="simpletablestyle">
-            <h:column>
-                <f:facet name="header">Id</f:facet>
-                #{_member.id}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Name</f:facet>
-                #{_member.name}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Email</f:facet>
-                #{_member.email}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Phone #</f:facet>
-                #{_member.phoneNumber}
-            </h:column>
-            <h:column>
-                <f:facet name="header">REST URL</f:facet>
-                <a
-                    href="#{request.contextPath}/services/cars/#{_member.id}">/rest/members/#{_member.id}</a>
-            </h:column>
-            <f:facet name="footer">
-            REST URL for all members: <a
-                    href="#{request.contextPath}/rest/members">/rest/members</a>
-            </f:facet>
-        </h:dataTable>
-    </ui:define>
+      <hr></hr>
+
+      <footer>
+        <p>&copy; Company 2013</p>
+      </footer>
+      
+    </div> <!-- /container -->
+  
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../resources/js/jquery.js"></script>
+    <script src="../resources/js/bootstrap-transition.js"></script>
+    <script src="../resources/js/bootstrap-alert.js"></script>
+    <script src="../resources/js/bootstrap-modal.js"></script>
+    <script src="../resources/js/bootstrap-dropdown.js"></script>
+    <script src="../resources/js/bootstrap-scrollspy.js"></script>
+    <script src="../resources/js/bootstrap-tab.js"></script>
+    <script src="../resources/js/bootstrap-tooltip.js"></script>
+    <script src="../resources/js/bootstrap-popover.js"></script>
+    <script src="../resources/js/bootstrap-button.js"></script>
+    <script src="../resources/js/bootstrap-collapse.js"></script>
+    <script src="../resources/js/bootstrap-carousel.js"></script>
+    <script src="../resources/js/bootstrap-typeahead.js"></script>
+   
+  </body>
+</html>
 </ui:composition>

@@ -150,6 +150,7 @@ public class CarResource {
      */
     @GET
     @Produces("application/xml")
+    @MaxAge(500)
     public Response getAllCars() {
     	TypedQuery<Car> query = em.createNamedQuery(Car.FIND_ALL, Car.class);
     	Cars cars=new Cars();

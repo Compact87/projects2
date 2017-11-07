@@ -12,8 +12,8 @@ public class ApplicationConfig extends Application {
 	  // ======================================
 	  // =             Attributes             =
 	  // ======================================
-
-	  private final Set<Class<?>> classes;
+      private Set<Object> singletons = new HashSet<Object>();
+	  private  Set<Class<?>> classes;
 
 	  // ======================================
 	  // =            Constructors            =
@@ -24,8 +24,9 @@ public class ApplicationConfig extends Application {
 	    c.add(CarResource.class);
 	    c.add(CarEndpoint.class);
 	    c.add(ShopResource.class);
-	    
-
+	    singletons.add(new CarResource());
+	    classes.add(MaxAgeFeature.class);
+      
 	   
 	    classes = Collections.unmodifiableSet(c);
 	  }

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+  <head>
+    <title>Bootstrap 101 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"></link>
+  </head>
+  <body>
+    <div class="container">
+		<div class="navbar navbar-inverse">
+			<div class="navbar-brand">
+				Knjizara
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+    
+    <h:form styleClass="form-horizontal" id="bookForm">
+
+      <h:panelGrid columns="2">
+      <div class="form-group">
+        <h:outputLabel value="Title : "/>
+        <div class="col-sm-10">
+        <h:inputText value="#{manager.book.title}"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <h:outputLabel value="Price : "/>
+        <div class="col-sm-10">
+        <h:inputText value="#{manager.book.price}"/>
+      </div>
+      </div>
+      <div class="form-group">
+       <h:outputLabel value="Publisher : " />
+       <div class="col-sm-10">
+       <h:inputText value="#{manager.book.publisher}" />
+      </div>
+      </div>
+      <div class="form-group">
+        <h:outputLabel value="Number of pages : "/>
+        <div class="col-sm-10">
+        <h:inputText value="#{manager.book.nbOfPage}"/>
+      </div>
+      </div> 
+        <h:outputLabel value="Illustrations : "/>
+        <h:selectBooleanCheckbox value="#{manager.book.illustrations}"/>
+      </h:panelGrid>
+      </h:form>
+      
+      <table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>Title</th>
+							<th>Who</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<ui:repeat var="stud" value="#{manager.getallbooks()}">
+							<tr>
+								<td>#{stud.firstName} #{stud.lastName}</td>
+								<td>#{stud.standerd}</td>
+								<td>
+									<h:form>
+										<h:commandLink action="#{studentMB.getStudent(stud.id)}" >
+											<i class="glyphicon glyphicon-edit"></i>
+										</h:commandLink>
+									</h:form>
+								</td>
+								<td>
+									<h:form>
+										<h:commandLink action="#{studentMB.deleteStudent(stud.id)}">
+											<i class="glyphicon glyphicon-trash"></i>
+										</h:commandLink>
+									</h:form>
+								</td>
+							</tr>
+						</ui:repeat>
+					</tbody>
+				</table>
+				</div>
+		</div>
+	</div>
+  </body>
+  
+</html>
